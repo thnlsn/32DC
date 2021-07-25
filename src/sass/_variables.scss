@@ -3,6 +3,16 @@
   --color-black: #000;
 }
 
+// FONTS /////////////////
+// Amiri =-------------- 0,400;0,700 =-------------- REG | ITAL
+// Cinzel Decorative =-- 400;700;900 =-------------- REG
+// Cinzel =------------- 400;500;600;700;800;900 =-- REG
+//font-family: 'Amiri', serif;
+//font-family: 'Cinzel', serif;
+//font-family: 'Cinzel Decorative', cursive;
+$font-title: 'Cinzel Decorative', cursive;
+$font-text: 'Amiri', serif;
+
 // ------ ////////////////
 // COLORS ////////////////
 // ------ ////////////////
@@ -43,8 +53,8 @@ $forest-dark: #2e3f34;
 $forest-light: #e1f2e7;
 
 // COLORLESS
-$colorless: #cac5c0;
-$colorless-dark: #514f4d;
+$waste: #cac5c0;
+$waste-dark: #514f4d;
 
 // MULTI
 $multi: #e7ce7b;
