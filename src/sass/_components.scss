@@ -1,0 +1,26 @@
+.cards {
+  display: grid;
+}
+
+.card {
+  background-color: blueviolet;
+  padding: 0.3rem;
+  width: min-content;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  width: 35.5rem;
+  height: 25.916134185304rem;
+
+  &__cost {
+    background-color: orangered;
+    align-self: flex-end;
+  }
+  &__name {
+    margin-top: auto;
+    text-align: center;
+    background-color: yellowgreen;
+  }
+}
