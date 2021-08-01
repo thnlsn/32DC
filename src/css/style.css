@@ -24,11 +24,27 @@ body {
 .App {
   padding: 4rem; }
 
+:root {
+  --color-white: #fff;
+  --color-black: #000; }
+
+.card-name {
+  font-family: "Cinzel Decorative", cursive;
+  font-weight: 700;
+  font-size: 1.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+:root {
+  --color-white: #fff;
+  --color-black: #000; }
+
 .cards {
   display: grid; }
 
 .card {
-  background-color: blueviolet;
+  background-color: #cac5c0;
   padding: 0.3rem;
   width: min-content; }
 
@@ -43,4 +59,8 @@ body {
   .image-container__name {
     margin-top: auto;
     text-align: center;
-    background-color: yellowgreen; }
+    height: 4rem;
+    padding-top: 1rem;
+    background: #000;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.952819) 85%);
+    color: #fff; }

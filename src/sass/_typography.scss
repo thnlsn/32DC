@@ -1,0 +1,11 @@
+@import 'variables';
+
+.card-name {
+  font-family: $font-title;
+  font-weight: 700;
+  font-size: 1.55rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

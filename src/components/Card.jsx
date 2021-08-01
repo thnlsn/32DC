@@ -1,6 +1,6 @@
 import React from 'react';
 
-const border = (identity) => ({ backgroundColor: 'blueviolet' });
+const border = (identity) => ({});
 
 const background = (url) => ({
   backgroundImage: `url(${url})`,
@@ -8,6 +8,8 @@ const background = (url) => ({
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
 });
+
+const testName = 'Asmoranomardicadaistinaculdacar';
 
 const Card = ({
   name = 'Kozilek, the Great Distortion',
@@ -19,7 +21,7 @@ const Card = ({
     <div className='card' style={border(identity)}>
       <div className='image-container' style={background(art)}>
         <div className='image-container__cost'>{cost}</div>
-        <div className='image-container__name'>{name}</div>
+        <div className='image-container__name card-name'>{name}</div>
       </div>
     </div>
   );

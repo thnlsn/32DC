@@ -1,9 +1,11 @@
+@import 'variables';
+
 .cards {
   display: grid;
 }
 
 .card {
-  background-color: blueviolet;
+  background-color: $waste;
   padding: 0.3rem;
   width: min-content;
 }
@@ -21,6 +23,17 @@
   &__name {
     margin-top: auto;
     text-align: center;
-    background-color: yellowgreen;
+
+    height: 4rem;
+    padding-top: 1rem;
+
+    background: $black;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9528186274509804) 85%
+    );
+
+    color: $white;
   }
 }
