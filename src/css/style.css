@@ -55,7 +55,9 @@ body {
   height: 25.916134185304rem; }
   .image-container__cost {
     background-color: orangered;
-    align-self: flex-end; }
+    align-self: flex-end;
+    margin: 0.5rem 0.5rem 0 0;
+    padding: 0.5rem; }
   .image-container__name {
     margin-top: auto;
     text-align: center;
