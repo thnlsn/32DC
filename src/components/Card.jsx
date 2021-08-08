@@ -9,8 +9,10 @@ const background = (url) => ({
   backgroundRepeat: 'no-repeat',
 });
 
-const testName = 'Asmoranomardicadaistinaculdacar';
-
+// In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
+// In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
+//~ Make button to view the full card image
+//~ Make button to view flip-side if array of data
 const Card = ({
   name = 'Kozilek, the Great Distortion',
   cost = '{8}{C}{C}',

@@ -38,6 +38,38 @@ const getCommander = async (id, input) => {
     const response = await axios.get(endpoint);
     const {
       data: {
+        data: [{ ...card }],
+      },
+    } = response;
+    let name, identity, cost, art; // Data needed for card component
+
+    identity = card.color_identity;
+
+    console.log(response);
+
+    if (card.card_faces) {
+      name = card.card_faces.map(({ name }) => name);
+      if (card.image_uris) {
+        // Single-faced flip cards
+        cost = card.mana_cost;
+        art = card.image_uris.art_crop;
+        console.log(cost);
+        console.log(name);
+      } else {
+        // Modal double-faced cards (Kaldheim Gods / Zendikar Rising)
+        cost = card.card_faces.map(({ mana_cost }) => mana_cost);
+        art = card.card_faces.map(({ image_uris: { art_crop } }) => art_crop);
+      }
+    } else {
+      // Normal cards
+      name = card.name;
+      identity = card.color_identity;
+      cost = card.mana_cost;
+      art = card.image_uris.art_crop;
+    }
+
+    /*     const {
+      data: {
         data: [
           {
             name,
@@ -47,13 +79,16 @@ const getCommander = async (id, input) => {
           },
         ],
       },
-    } = response;
+    } = response; */
+    //console.log({ name, identity, cost, art });
+    //return { name, identity, cost, art };
+
     console.log({ name, identity, cost, art });
-    return { name, identity, cost, art };
   } catch (err) {
     console.log('Something went wrong...');
   }
 };
 
-searchCommanders('BGU', 'L', false);
-getCommander('BGU', 'Leovold');
+searchCommanders('BGU', 'Jorn', false);
+getCommander('W', 'rune-tail');
+//getCommander('BGU', 'Jorn');
