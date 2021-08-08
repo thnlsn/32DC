@@ -24,6 +24,7 @@ const searchCommanders = async (input, id, isValidCommander = true) => {
     return sortAutoComplete(names, input);
   } catch (err) {
     console.log('No results...');
+    return ['No results...'];
   }
 };
 
@@ -71,6 +72,7 @@ const getCommander = async (input, id) => {
     return { name, identity, cost, art };
   } catch (err) {
     console.log('Something went wrong...');
+    return ['No results...'];
   }
 };
 

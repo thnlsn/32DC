@@ -1,21 +1,5 @@
 @import 'variables';
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(36.1rem, 1fr));
-  gap: 2rem;
-
-  justify-items: center;
-}
-
-.card {
-  background-color: $waste;
-  padding: 0.3rem;
-  width: min-content;
-  border-radius: $card-border-radius;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
 .new-container,
 .image-container {
   display: flex;
@@ -32,6 +16,13 @@
 
 .new-container {
   background-color: rgba($black, 0.75);
+  padding: 1rem;
+
+  &__input {
+  }
+}
+
+.suggestions {
 }
 
 .image-container {

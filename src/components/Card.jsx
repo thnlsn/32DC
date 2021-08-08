@@ -45,13 +45,13 @@ const Card = ({ identity }) => {
             }}
             // On press enter, submit with index 0 (first autocorrect)
           />
-          <li className='suggestions'>
+          <ul className='suggestions'>
             {suggestions.map((suggestion, i) => (
-              <ul className='suggestion' key={i}>
+              <li className='suggestion' key={i}>
                 {suggestion}
-              </ul>
+              </li>
             ))}
-          </li>
+          </ul>
         </div>
       )}
     </div>
