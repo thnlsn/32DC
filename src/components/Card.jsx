@@ -14,13 +14,14 @@ const background = (url) => ({
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
 // In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
-//~ Make button to view the full card image
+//~ Make button to view the full card image / both sides if array of data
 //~ Make button to view flip-side if array of data
 const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
-  let name = '';
-  let art = '';
-  let cost = '';
+  const [suggestions, setSuggestions] = useState([]); //
+  const [name, setName] = useState(null);
+  const [cost, setCost] = useState(null);
+  const [art, setArt] = useState(null);
 
   return (
     <div className='card' style={{ background: `${border(identity)}` }}>
@@ -34,10 +35,23 @@ const Card = ({ identity }) => {
           <input
             className='new-container__input'
             type='text'
-            onChange={({ target: { value } }) => {
-              searchCommanders(value, identity);
+            onChange={async ({ target: { value } }) => {
+              // Remove spaces to avoid tons of responses for essentially nothing
+              if (value.replace(/\s+/g, '')) {
+                setSuggestions(await searchCommanders(value, identity));
+              } else {
+                setSuggestions([]);
+              }
             }}
+            // On press enter, submit with index 0 (first autocorrect)
           />
+          <li className='suggestions'>
+            {suggestions.map((suggestion, i) => (
+              <ul className='suggestion' key={i}>
+                {suggestion}
+              </ul>
+            ))}
+          </li>
         </div>
       )}
     </div>
