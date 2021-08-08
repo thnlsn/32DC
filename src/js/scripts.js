@@ -50,18 +50,19 @@ const _stripPunctuation = (input) => {
     .toLowerCase();
 };
 
+// Taking an input string and an array of strings, sort the array by strings that begin exactly the same as the input first
 const _sortInputFirst = (input, data) => {
-  var first = [];
-  var others = [];
+  var first = []; // Strings in data array that being with the same characters as the input
+  var others = []; // Everything else, alphabetized
   for (var i = 0; i < data.length; i++) {
+    // If the first characters (index 0) of the data string is the same as the input (both stripped), then it is a match and push it to first
     if (_stripPunctuation(data[i]).indexOf(_stripPunctuation(input)) == 0) {
       first.push(data[i]);
     } else {
+      // Otherwise push it to others
       others.push(data[i]);
     }
   }
-  first.sort();
-  others.sort();
   return first.concat(others);
 };
 
@@ -70,7 +71,7 @@ const sortAutoComplete = (arr, string) => {
   const strippedArr = arr.map((str) => _stripPunctuation(str));
   const strippedStr = _stripPunctuation(string);
   // Sort based on string first
-  console.log(_sortInputFirst(string, arr));
+  return _sortInputFirst(string, arr);
 };
 
 export { border, sortAutoComplete };

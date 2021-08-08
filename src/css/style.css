@@ -41,7 +41,10 @@ body {
   --color-black: #000; }
 
 .cards {
-  display: grid; }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36.1rem, 1fr));
+  gap: 2rem;
+  justify-items: center; }
 
 .card {
   background-color: #cac5c0;
@@ -50,6 +53,7 @@ body {
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; }
 
+.new-container,
 .image-container {
   display: flex;
   flex-direction: column;
@@ -58,18 +62,23 @@ body {
   border-radius: 6px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; }
-  .image-container__cost {
-    background-color: orangered;
-    align-self: flex-end;
-    margin: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem; }
-  .image-container__name {
-    margin-top: auto;
-    text-align: center;
-    height: 4rem;
-    padding-top: 1rem;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    background: #000;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.952819) 85%);
-    color: #fff; }
+
+.new-container {
+  background-color: rgba(0, 0, 0, 0.75); }
+
+.image-container__cost {
+  background-color: orangered;
+  align-self: flex-end;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.5rem; }
+
+.image-container__name {
+  margin-top: auto;
+  text-align: center;
+  height: 4rem;
+  padding-top: 1rem;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: #000;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.952819) 85%);
+  color: #fff; }

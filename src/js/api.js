@@ -4,8 +4,10 @@ import { sortAutoComplete } from './scripts';
 // Replace cards with prints for all versions
 const searchQuery = 'https://api.scryfall.com/cards/search/?q=';
 
-// GET ALL MATCHING COMMANDERS
-const searchCommanders = async (id, input, isValidCommander = true) => {
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GET ALL MATCHING COMMANDERS /////////////////////////////////////////////////////////////////////////
+const searchCommanders = async (input, id, isValidCommander = true) => {
   // Limited to cards that match the search string and are of exactly a specific color identity.
   // regex is because & and # caused strange results...
   const endpoint = `${searchQuery}${input.replace(/[&#]/g, '')}%2C+id%3D${id}${
@@ -18,17 +20,17 @@ const searchCommanders = async (id, input, isValidCommander = true) => {
     } = response;
     const names = data.map(({ name }) => name);
 
-    sortAutoComplete(names, input);
-
-    console.log(names);
-    console.log(input);
+    console.log(sortAutoComplete(names, input)); //!Remove
+    return sortAutoComplete(names, input);
   } catch (err) {
     console.log('No results...');
   }
 };
 
-// GET SPECIFIC COMMANDER
-const getCommander = async (id, input) => {
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// GET SPECIFIC COMMANDER //////////////////////////////////////////////////////////////////////////////
+const getCommander = async (input, id) => {
   // Not limiting to commanders because user may have requested to allow non-legendaries + banned cards
   const endpoint = `${searchQuery}${encodeURIComponent(
     input
@@ -45,16 +47,14 @@ const getCommander = async (id, input) => {
 
     identity = card.color_identity;
 
-    console.log(response);
-
+    console.log(response); //!Remove
+    // If there are card faces, then it is either a flip or double-faced card
     if (card.card_faces) {
       name = card.card_faces.map(({ name }) => name);
       if (card.image_uris) {
         // Single-faced flip cards
         cost = card.mana_cost;
         art = card.image_uris.art_crop;
-        console.log(cost);
-        console.log(name);
       } else {
         // Modal double-faced cards (Kaldheim Gods / Zendikar Rising)
         cost = card.card_faces.map(({ mana_cost }) => mana_cost);
@@ -67,28 +67,15 @@ const getCommander = async (id, input) => {
       cost = card.mana_cost;
       art = card.image_uris.art_crop;
     }
-
-    /*     const {
-      data: {
-        data: [
-          {
-            name,
-            color_identity: identity,
-            mana_cost: cost,
-            image_uris: { art_crop: art },
-          },
-        ],
-      },
-    } = response; */
-    //console.log({ name, identity, cost, art });
-    //return { name, identity, cost, art };
-
-    console.log({ name, identity, cost, art });
+    console.log({ name, identity, cost, art }); //!Remove
+    return { name, identity, cost, art };
   } catch (err) {
     console.log('Something went wrong...');
   }
 };
 
-searchCommanders('BGU', 'Jorn', false);
-getCommander('W', 'rune-tail');
+//searchCommanders('a', 'BUG', false);
+//getCommander('Tib', 'BR');
 //getCommander('BGU', 'Jorn');
+
+export { searchCommanders, getCommander };
