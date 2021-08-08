@@ -43,4 +43,34 @@ const border = (identity) => {
   }
 };
 
-export { border };
+// Removes spaces, punctuation and capitalization
+const _stripPunctuation = (input) => {
+  return input
+    .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ ]/g, '')
+    .toLowerCase();
+};
+
+const _sortInputFirst = (input, data) => {
+  var first = [];
+  var others = [];
+  for (var i = 0; i < data.length; i++) {
+    if (_stripPunctuation(data[i]).indexOf(_stripPunctuation(input)) == 0) {
+      first.push(data[i]);
+    } else {
+      others.push(data[i]);
+    }
+  }
+  first.sort();
+  others.sort();
+  return first.concat(others);
+};
+
+const sortAutoComplete = (arr, string) => {
+  // Strip the entire array AND the string for comparison purposes
+  const strippedArr = arr.map((str) => _stripPunctuation(str));
+  const strippedStr = _stripPunctuation(string);
+  // Sort based on string first
+  console.log(_sortInputFirst(string, arr));
+};
+
+export { border, sortAutoComplete };
