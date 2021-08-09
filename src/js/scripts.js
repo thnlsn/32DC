@@ -20,9 +20,10 @@ const border = (identity) => {
         colors[identity[1]]
       } 75%)`;
     case 3:
-      return `linear-gradient(90deg, ${colors[identity[0]]} 0%, ${
+      return `
+      linear-gradient(145deg, ${colors[identity[0]]} 0%, ${
         colors[identity[1]]
-      } 30%, ${colors[identity[1]]} 70%, ${colors[identity[2]]} 100%)`;
+      } 50%, ${colors[identity[2]]} 100%)`;
     case 4:
       return `radial-gradient(ellipse at top left, ${
         colors[identity[0]]

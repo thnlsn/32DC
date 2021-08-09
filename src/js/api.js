@@ -73,7 +73,7 @@ const getCommander = async (input, id) => {
     return { name, identity, cost, art };
   } catch (err) {
     console.log('Something went wrong...');
-    return ['No results...'];
+    return null;
   }
 };
 

@@ -44,12 +44,31 @@ const Card = ({ identity }) => {
     } else {
       // Do things after first render
       const fetchCommander = async () => {
-        return await getCommander(name);
+        const commander = await getCommander(name);
+        console.log(commander);
+        if (commander) {
+          const { cost, art } = commander;
+
+          setCost(cost);
+          setArt(art);
+        } else {
+          alert('Something went wrong in your getCommander request...');
+          //~ Some kind of visual error indicator
+        }
       };
-      const commander = fetchCommander();
-      console.log(commander);
+      fetchCommander();
     }
   }, [name]);
+
+  useEffect(() => {
+    console.log(name, art, cost);
+    if (name && cost && art) {
+      console.log('flipped');
+      setFlipped(true);
+    }
+  }, [name, cost, art]);
+
+  //~ Add useEffect to fetch for DB when there is one, and set name field of card
 
   return (
     <div className='card' style={{ background: `${border(identity)}` }}>
@@ -69,6 +88,11 @@ const Card = ({ identity }) => {
             }}
             type='text'
             onKeyUp={handleOnChange}
+            onKeyPress={({ key, target: { textContent } }) => {
+              if (key === 'Enter') {
+                setName(suggestions[0]);
+              }
+            }}
             // On press enter, submit with index 0 (first autocorrect)
           />
           <ul className='suggestions text'>
