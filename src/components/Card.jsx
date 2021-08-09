@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 //* Scripts
-import { searchCommanders } from '../js/api';
+import { searchCommanders, getCommander } from '../js/api';
 import { border } from '../js/scripts';
 
 const background = (url) => ({
@@ -22,6 +22,14 @@ const Card = ({ identity }) => {
   const [name, setName] = useState(null);
   const [cost, setCost] = useState(null);
   const [art, setArt] = useState(null);
+
+  useEffect(() => {
+    const fetchCommander = async () => {
+      return await getCommander(name);
+    };
+    const commander = fetchCommander();
+    console.log(commander);
+  }, [name]);
 
   return (
     <div className='card' style={{ background: `${border(identity)}` }}>
@@ -52,7 +60,11 @@ const Card = ({ identity }) => {
           />
           <ul className='suggestions text'>
             {suggestions.map((suggestion, i) => (
-              <li className='suggestions__suggestion text' key={i}>
+              <li
+                className='suggestions__suggestion text'
+                key={i}
+                onClick={({ target: { textContent } }) => setName(textContent)}
+              >
                 {suggestion}
               </li>
             ))}

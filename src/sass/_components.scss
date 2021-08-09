@@ -27,7 +27,7 @@
 }
 
 .suggestions {
-  --suggestion-gutter: 0.9rem;
+  --suggestion-gutter: 0.9rem; // Space between each individual suggestion
 
   list-style-type: none;
   max-height: 21.6rem;
@@ -42,12 +42,19 @@
       calc(var(--suggestion-gutter) / 2) 0.75rem;
     background-color: rgba($white, 0.65);
     line-height: 0.9;
+    cursor: pointer;
 
     &:first-of-type {
       padding-top: var(--suggestion-gutter);
     }
     &:last-of-type {
       padding-bottom: var(--suggestion-gutter);
+    }
+
+    transition: color 0.125s, background-color 0.1s;
+    &:hover {
+      background-color: rgba($black, 0.55);
+      color: rgba($white, 0.65);
     }
   }
 }
@@ -59,6 +66,7 @@
     margin: 0.5rem 0.5rem 0 0;
     padding: 0.5rem;
   }
+
   &__name {
     margin-top: auto;
     text-align: center;

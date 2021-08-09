@@ -16,9 +16,9 @@ const border = (identity) => {
     case 1:
       return colors[identity[0]]; // colors property names are the same as the values expected from the identity array //? Ex: colors['W'] = '#e9e3b1'
     case 2:
-      return `linear-gradient(90deg, ${colors[identity[0]]} 35%, ${
+      return `linear-gradient(90deg, ${colors[identity[0]]} 25%, ${
         colors[identity[1]]
-      } 65%)`;
+      } 75%)`;
     case 3:
       return `linear-gradient(90deg, ${colors[identity[0]]} 0%, ${
         colors[identity[1]]
