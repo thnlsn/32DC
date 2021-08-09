@@ -11,7 +11,8 @@ const searchCommanders = async (input, id, isValidCommander = true) => {
   // Limited to cards that match the search string and are of exactly a specific color identity.
   // regex is because & and # caused strange results...
   const endpoint = `${searchQuery}${input.replace(/[&#]/g, '')}%2C+id%3D${id}${
-    isValidCommander ? '+is%3Acommander' : '+type%3Acreature'
+    // If isValidCommander is false, non-commander, non-legendaries, banned, and silver-bordered cards will be allowed in the search.
+    isValidCommander ? '+is%3Acommander+legal%3Acommander' : '+type%3Acreature'
   }`;
   try {
     const response = await axios.get(endpoint);

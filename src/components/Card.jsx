@@ -31,11 +31,16 @@ const Card = ({ identity }) => {
           <div className='image-container__name card-name'>{name}</div>
         </div>
       ) : (
-        <div className='new-container' style={background(art)}>
+        <div className='new-container'>
           <input
             className='new-container__input'
+            style={{
+              borderRadius: `4px 4px ${suggestions.length ? 0 : 4}px ${
+                suggestions.length ? 0 : 4
+              }px`,
+            }}
             type='text'
-            onChange={async ({ target: { value } }) => {
+            onKeyUp={async ({ target: { value } }) => {
               // Remove spaces to avoid tons of responses for essentially nothing
               if (value.replace(/\s+/g, '')) {
                 setSuggestions(await searchCommanders(value, identity));
@@ -45,9 +50,9 @@ const Card = ({ identity }) => {
             }}
             // On press enter, submit with index 0 (first autocorrect)
           />
-          <ul className='suggestions'>
+          <ul className='suggestions text'>
             {suggestions.map((suggestion, i) => (
-              <li className='suggestion' key={i}>
+              <li className='suggestions__suggestion text' key={i}>
                 {suggestion}
               </li>
             ))}

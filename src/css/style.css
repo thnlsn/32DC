@@ -41,6 +41,11 @@ body {
   align-items: center;
   justify-content: center; }
 
+.text {
+  font-family: "Cinzel", serif;
+  font-size: 1.6rem;
+  font-weight: 600; }
+
 :root {
   --color-white: #fff;
   --color-black: #000; }
@@ -73,8 +78,30 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; }
 
 .new-container {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem; }
+  .new-container__input {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem; }
+
+.suggestions {
+  --suggestion-gutter: 0.9rem;
+  list-style-type: none;
+  max-height: 21.6rem;
+  overflow-y: auto;
+  border-radius: 0px 0px 4px 4px;
+  display: flex;
+  flex-direction: column; }
+  .suggestions__suggestion {
+    padding: calc(var(--suggestion-gutter) / 2) 0.25rem calc(var(--suggestion-gutter) / 2) 0.75rem;
+    background-color: rgba(255, 255, 255, 0.65);
+    line-height: 0.9; }
+    .suggestions__suggestion:first-of-type {
+      padding-top: var(--suggestion-gutter); }
+    .suggestions__suggestion:last-of-type {
+      padding-bottom: var(--suggestion-gutter); }
 
 .image-container__cost {
   background-color: orangered;
