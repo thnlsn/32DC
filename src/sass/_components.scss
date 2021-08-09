@@ -41,7 +41,7 @@
     padding: calc(var(--suggestion-gutter) / 2) 0.25rem
       calc(var(--suggestion-gutter) / 2) 0.75rem;
     background-color: rgba($white, 0.65);
-    line-height: 0.9;
+    line-height: 0.95;
     cursor: pointer;
 
     &:first-of-type {

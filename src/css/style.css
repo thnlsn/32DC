@@ -97,7 +97,7 @@ body {
   .suggestions__suggestion {
     padding: calc(var(--suggestion-gutter) / 2) 0.25rem calc(var(--suggestion-gutter) / 2) 0.75rem;
     background-color: rgba(255, 255, 255, 0.65);
-    line-height: 0.9;
+    line-height: 0.95;
     cursor: pointer;
     transition: color 0.125s, background-color 0.1s; }
     .suggestions__suggestion:first-of-type {

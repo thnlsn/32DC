@@ -1,5 +1,5 @@
 //* Dependencies
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //* Scripts
 import { searchCommanders, getCommander } from '../js/api';
@@ -22,13 +22,33 @@ const Card = ({ identity }) => {
   const [name, setName] = useState(null);
   const [cost, setCost] = useState(null);
   const [art, setArt] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Handle search input change //////////////////////////////////////////////////////////////////////////
+  const handleOnChange = async ({ target: { value } }) => {
+    // Remove spaces to avoid tons of responses for essentially nothing
+    if (value.replace(/\s+/g, '')) {
+      setSuggestions(await searchCommanders(value, identity));
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Fetch commander data when a new selection is chosen  ////////////////////////////////////////////////
+  const firstUpdate = useRef(true);
   useEffect(() => {
-    const fetchCommander = async () => {
-      return await getCommander(name);
-    };
-    const commander = fetchCommander();
-    console.log(commander);
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+    } else {
+      // Do things after first render
+      const fetchCommander = async () => {
+        return await getCommander(name);
+      };
+      const commander = fetchCommander();
+      console.log(commander);
+    }
   }, [name]);
 
   return (
@@ -48,14 +68,7 @@ const Card = ({ identity }) => {
               }px`,
             }}
             type='text'
-            onKeyUp={async ({ target: { value } }) => {
-              // Remove spaces to avoid tons of responses for essentially nothing
-              if (value.replace(/\s+/g, '')) {
-                setSuggestions(await searchCommanders(value, identity));
-              } else {
-                setSuggestions([]);
-              }
-            }}
+            onKeyUp={handleOnChange}
             // On press enter, submit with index 0 (first autocorrect)
           />
           <ul className='suggestions text'>
