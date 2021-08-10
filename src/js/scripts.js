@@ -1,9 +1,7 @@
-// []
-// [G]
-// [R, G]
-// [B, R, G]
-// [U, B, R, G]
-// [W, U, B, R, G] = identity
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Controls the border color based on cards color identity  ////////////////////////////////////////////
+//^ identity => ['W', 'U', 'B', 'R', 'G']   -   ['G']   -   []
 const border = (identity) => {
   const colors = {
     W: '#e9e3b1',
@@ -44,6 +42,17 @@ const border = (identity) => {
   }
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Sorts the *arr response from api by matching input *string //////////////////////////////////////////
+const sortAutoComplete = (arr, string) => {
+  // Strip the entire array AND the string for comparison purposes
+  const strippedArr = arr.map((str) => _stripPunctuation(str));
+  const strippedStr = _stripPunctuation(string);
+  // Sort based on string first
+  return _sortInputFirst(string, arr);
+};
+
 // Removes spaces, punctuation and capitalization
 const _stripPunctuation = (input) => {
   return input
@@ -67,12 +76,8 @@ const _sortInputFirst = (input, data) => {
   return first.concat(others);
 };
 
-const sortAutoComplete = (arr, string) => {
-  // Strip the entire array AND the string for comparison purposes
-  const strippedArr = arr.map((str) => _stripPunctuation(str));
-  const strippedStr = _stripPunctuation(string);
-  // Sort based on string first
-  return _sortInputFirst(string, arr);
-};
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// x ///////////////////////////////////////////////////////////////////////////////
 
 export { border, sortAutoComplete };

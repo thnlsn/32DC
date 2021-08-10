@@ -39,6 +39,41 @@ const Card = ({ identity }) => {
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Handle key downs in autocomplete suggesstions  //////////////////////////////////////////////////////
+  const handleOnKeyDown = ({ key }) => {
+    if (key === 'Enter') {
+      if (Number.isInteger(selection)) {
+        setName(suggestions[selection]);
+      } else {
+        setSelection(0);
+        setName(suggestions[0]);
+      }
+    }
+    if (key === 'ArrowUp') {
+      if (
+        Number.isInteger(selection) &&
+        selection < suggestions.length &&
+        selection - 1 >= 0
+      ) {
+        setSelection(selection - 1);
+      } else {
+        setSelection(0);
+      }
+    }
+    if (key === 'ArrowDown') {
+      if (
+        Number.isInteger(selection) &&
+        selection >= 0 &&
+        selection + 1 < suggestions.length
+      ) {
+        setSelection(selection + 1);
+      } else {
+        setSelection(0);
+      }
+    }
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Fetch commander data when a new selection is chosen  ////////////////////////////////////////////////
   const firstUpdate = useRef(true);
   useEffect(() => {
@@ -91,39 +126,7 @@ const Card = ({ identity }) => {
             }}
             type='text'
             onKeyUp={handleOnChange}
-            onKeyDown={({ key, target: { textContent } }) => {
-              if (key === 'Enter') {
-                console.log('Enter');
-                setName(suggestions[0]);
-              }
-              if (key === 'ArrowUp') {
-                if (
-                  Number.isInteger(selection) &&
-                  selection < suggestions.length &&
-                  selection - 1 >= 0
-                ) {
-                  console.log('ArrowUp if');
-                  setSelection(selection - 1);
-                } else {
-                  setSelection(0);
-                }
-                console.log(selection); // After
-              }
-              if (key === 'ArrowDown') {
-                if (
-                  Number.isInteger(selection) &&
-                  selection >= 0 &&
-                  selection + 1 < suggestions.length
-                ) {
-                  console.log('ArrowDown if');
-                  setSelection(selection + 1);
-                } else {
-                  setSelection(0);
-                }
-                console.log(selection); // After
-              }
-            }}
-            // On press enter, submit with index 0 (first autocorrect)
+            onKeyDown={handleOnKeyDown}
           />
           <ul className='suggestions text'>
             {suggestions.map((suggestion, i) => (
