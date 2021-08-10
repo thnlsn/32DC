@@ -14,11 +14,14 @@ const background = (url) => ({
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
 // In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
-//~ Make button to view the full card image / both sides if array of data
-//~ Make button to view flip-side if array of data
+//~ Make button to view the full card image / both sides if array of data.
+//~ Make button to view flip-side if array of data.
+//~ Don't allow search when "No Results..." - and don't let there be hover effect on it either.
+//~ Make it so autocompletes scroll down when you press down and it is in the overflowed portion.
 const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
   const [suggestions, setSuggestions] = useState([]); //
+  const [selection, setSelection] = useState(null); // For up/down key press on input to cycle options
   const [name, setName] = useState(null);
   const [cost, setCost] = useState(null);
   const [art, setArt] = useState(null);
@@ -88,9 +91,36 @@ const Card = ({ identity }) => {
             }}
             type='text'
             onKeyUp={handleOnChange}
-            onKeyPress={({ key, target: { textContent } }) => {
+            onKeyDown={({ key, target: { textContent } }) => {
               if (key === 'Enter') {
+                console.log('Enter');
                 setName(suggestions[0]);
+              }
+              if (key === 'ArrowUp') {
+                if (
+                  Number.isInteger(selection) &&
+                  selection < suggestions.length &&
+                  selection - 1 >= 0
+                ) {
+                  console.log('ArrowUp if');
+                  setSelection(selection - 1);
+                } else {
+                  setSelection(0);
+                }
+                console.log(selection); // After
+              }
+              if (key === 'ArrowDown') {
+                if (
+                  Number.isInteger(selection) &&
+                  selection >= 0 &&
+                  selection + 1 < suggestions.length
+                ) {
+                  console.log('ArrowDown if');
+                  setSelection(selection + 1);
+                } else {
+                  setSelection(0);
+                }
+                console.log(selection); // After
               }
             }}
             // On press enter, submit with index 0 (first autocorrect)
@@ -99,6 +129,14 @@ const Card = ({ identity }) => {
             {suggestions.map((suggestion, i) => (
               <li
                 className='suggestions__suggestion text'
+                style={
+                  selection === i
+                    ? {
+                        backgroundColor: 'rgba(0,0,0, 0.55)',
+                        color: 'rgba(255, 255, 255, 0.65)',
+                      }
+                    : null
+                }
                 key={i}
                 onClick={({ target: { textContent } }) => setName(textContent)}
               >

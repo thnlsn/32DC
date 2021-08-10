@@ -107,6 +107,9 @@ body {
     .suggestions__suggestion:hover {
       background-color: rgba(0, 0, 0, 0.55);
       color: rgba(255, 255, 255, 0.65); }
+    .suggestions__suggestion--hover {
+      background-color: rgba(0, 0, 0, 0.55);
+      color: rgba(255, 255, 255, 0.65); }
 
 .image-container__cost {
   background-color: orangered;

@@ -19,7 +19,7 @@ const searchCommanders = async (input, id, isValidCommander = true) => {
     const {
       data: { data },
     } = response;
-    const names = data.map(({ name }) => name);
+    const names = data.map(({ name }, i) => name);
 
     console.log(sortAutoComplete(names, input)); //!Remove
     return sortAutoComplete(names, input);

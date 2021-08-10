@@ -56,6 +56,11 @@
       background-color: rgba($black, 0.55);
       color: rgba($white, 0.65);
     }
+    // For javascript to force the effect on keypress up/down
+    &--hover {
+      background-color: rgba($black, 0.55);
+      color: rgba($white, 0.65);
+    }
   }
 }
 
