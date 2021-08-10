@@ -6,7 +6,7 @@
   flex-direction: column;
   width: 35.5rem;
   height: 25.916134185304rem;
-  border-radius: $card-border-radius;
+  border-radius: $card-border-radius-lg;
   border: 1px solid rgba($black, 0.2);
 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
@@ -65,11 +65,27 @@
 }
 
 .image-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
   &__cost {
     background-color: orangered;
     align-self: flex-end;
     margin: 0.5rem 0.5rem 0 0;
     padding: 0.5rem;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+
+    color: rgba($white, 0.65);
+    font-size: 2rem; //~ Move this or delete it
   }
 
   &__name {
@@ -79,8 +95,8 @@
     height: 4rem;
     padding-top: 1rem;
 
-    border-bottom-right-radius: $card-border-radius;
-    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius-lg;
+    border-bottom-left-radius: $card-border-radius-lg;
 
     background: $black;
     background: linear-gradient(

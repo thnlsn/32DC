@@ -22,9 +22,10 @@ const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
   const [suggestions, setSuggestions] = useState([]); //
   const [selection, setSelection] = useState(null); // For up/down key press on input to cycle options
-  const [name, setName] = useState(null);
+  const [name, setName] = useState([]);
   const [cost, setCost] = useState(null);
   const [art, setArt] = useState(null);
+  const [front, setFront] = useState(true);
   const [loading, setLoading] = useState(false);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,10 +44,10 @@ const Card = ({ identity }) => {
   const handleOnKeyDown = ({ key }) => {
     if (key === 'Enter') {
       if (Number.isInteger(selection)) {
-        setName(suggestions[selection]);
+        setName(suggestions[selection].split('//'));
       } else {
         setSelection(0);
-        setName(suggestions[0]);
+        setName(suggestions[0].split('//'));
       }
     }
     if (key === 'ArrowUp') {
@@ -71,6 +72,24 @@ const Card = ({ identity }) => {
         setSelection(0);
       }
     }
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Handle switch faces  ////////////////////////////////////////////////////////////////////////////////
+  const handleSwitchFace = () => {
+    console.log(name);
+    console.log(art);
+    // If there are 2 names and only 1 art, then switch the name and rotate the image 180 degrees //*-- it is a single face flip card
+    // If there are 2 names and 2 arts, then switch the name and art  //*-- it is a multi-face card
+  };
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Handle delete selection  ////////////////////////////////////////////////////////////////////////////
+  const handleDelete = () => {
+    console.log(name);
+    console.log(art);
+    // If there are 2 names and only 1 art, then switch the name and rotate the image 180 degrees //*-- it is a single face flip card
+    // If there are 2 names and 2 arts, then switch the name and art  //*-- it is a multi-face card
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,11 +130,31 @@ const Card = ({ identity }) => {
   return (
     <div className='card' style={{ background: `${border(identity)}` }}>
       {flipped ? (
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Back-side of card component /////////////////////////////////////////////////////////////////////////
         <div className='image-container' style={background(art)}>
           <div className='image-container__cost'>{cost}</div>
-          <div className='image-container__name card-name'>{name}</div>
+          <div className='image-container__options'>
+            <div className='image-container__option' onClick={handleSwitchFace}>
+              FACESWAP
+            </div>
+            <div className='image-container__option' onClick={handleDelete}>
+              DELETE
+            </div>
+          </div>
+          <div className='image-container__name card-name'>
+            {
+              name[
+                front ? 0 : 1
+              ] /*//~ This needs to be able to be switched between 0 and 1 */
+            }
+          </div>
         </div>
       ) : (
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Front-side of card component ////////////////////////////////////////////////////////////////////////
         <div className='new-container'>
           <input
             className='new-container__input'
@@ -141,7 +180,9 @@ const Card = ({ identity }) => {
                     : null
                 }
                 key={i}
-                onClick={({ target: { textContent } }) => setName(textContent)}
+                onClick={({ target: { textContent } }) =>
+                  setName(textContent.split('//'))
+                }
               >
                 {suggestion}
               </li>
