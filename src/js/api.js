@@ -55,8 +55,8 @@ const getCommander = async (input, id) => {
       name = card.card_faces.map(({ name }) => name);
       if (card.image_uris) {
         // Single-faced flip cards
-        cost = card.mana_cost;
-        art = card.image_uris.art_crop;
+        cost = [card.mana_cost];
+        art = [card.image_uris.art_crop];
       } else {
         // Modal double-faced cards (Kaldheim Gods / Zendikar Rising)
         cost = card.card_faces.map(({ mana_cost }) => mana_cost);
@@ -64,10 +64,10 @@ const getCommander = async (input, id) => {
       }
     } else {
       // Normal cards
-      name = card.name;
+      name = [card.name];
       identity = card.color_identity;
-      cost = card.mana_cost;
-      art = card.image_uris.art_crop;
+      cost = [card.mana_cost];
+      art = [card.image_uris.art_crop];
     }
     console.log({ name, identity, cost, art }); //!Remove
     return { name, identity, cost, art };

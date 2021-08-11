@@ -1,0 +1,6 @@
+0.svg	14.svg	2.svg	2W.svg	8.svg	C.svg	       index.js  U.svg	 WP.svg
+1.svg	15.svg	20.svg	3.svg	9.svg	filenames.txt  R.svg	 UB.svg  WU.svg
+10.svg	16.svg	2B.svg	4.svg	B.svg	G.svg	       RG.svg	 UP.svg  X.svg
+11.svg	17.svg	2G.svg	5.svg	BG.svg	GP.svg	       RP.svg	 UR.svg
+12.svg	18.svg	2R.svg	6.svg	BP.svg	GU.svg	       RW.svg	 W.svg
+13.svg	19.svg	2U.svg	7.svg	BR.svg	GW.svg	       S.svg	 WB.svg

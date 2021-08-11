@@ -3,9 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 
 //* Scripts
 import { searchCommanders, getCommander } from '../js/api';
-import { border } from '../js/scripts';
+import { decorateBorder, decorateCost } from '../js/scripts';
 
-const background = (url) => ({
+const decorateBackground = (url) => ({
   backgroundImage: `url(${url})`,
   backgroundPosition: 'center',
   backgroundSize: 'cover',
@@ -18,14 +18,15 @@ const background = (url) => ({
 //~ Make button to view flip-side if array of data.
 //~ Don't allow search when "No Results..." - and don't let there be hover effect on it either.
 //~ Make it so autocompletes scroll down when you press down and it is in the overflowed portion.
+//~ IDEA: Make any possible second art under the main art so that there can be a fade in/out between the 2 rather than instant transition
 const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
   const [suggestions, setSuggestions] = useState([]); //
   const [selection, setSelection] = useState(null); // For up/down key press on input to cycle options
   const [name, setName] = useState([]);
-  const [cost, setCost] = useState(null);
-  const [art, setArt] = useState(null);
-  const [front, setFront] = useState(true);
+  const [cost, setCost] = useState([]);
+  const [art, setArt] = useState([]);
+  const [front, setFront] = useState(true); // Front as in front/main face/side of the actual real-life card
   const [loading, setLoading] = useState(false);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,19 +78,24 @@ const Card = ({ identity }) => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Handle switch faces  ////////////////////////////////////////////////////////////////////////////////
   const handleSwitchFace = () => {
-    console.log(name);
-    console.log(art);
     // If there are 2 names and only 1 art, then switch the name and rotate the image 180 degrees //*-- it is a single face flip card
+    if (name.length === 2 && art.length === 1) {
+      setFront(!front); //~ Set front but we dont want the art or cost to change... Fix this
+    }
     // If there are 2 names and 2 arts, then switch the name and art  //*-- it is a multi-face card
+    if (name.length === 2 && art.length === 2) {
+      setFront(!front);
+    }
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Handle delete selection  ////////////////////////////////////////////////////////////////////////////
   const handleDelete = () => {
-    console.log(name);
-    console.log(art);
-    // If there are 2 names and only 1 art, then switch the name and rotate the image 180 degrees //*-- it is a single face flip card
-    // If there are 2 names and 2 arts, then switch the name and art  //*-- it is a multi-face card
+    setFlipped(false);
+    setName([]);
+    setCost([]);
+    setArt([]);
+    setSuggestions([]);
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,22 +125,28 @@ const Card = ({ identity }) => {
 
   useEffect(() => {
     console.log(name, art, cost);
-    if (name && cost && art) {
+    if (name.length > 0 && cost.length > 0 && art.length > 0) {
       console.log('flipped');
       setFlipped(true);
     }
-  }, [name, cost, art]);
+  }, [name, art, cost]);
 
   //~ Add useEffect to fetch for DB when there is one, and set name field of card
 
   return (
-    <div className='card' style={{ background: `${border(identity)}` }}>
+    <div className='card' style={{ background: `${decorateBorder(identity)}` }}>
       {flipped ? (
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Back-side of card component /////////////////////////////////////////////////////////////////////////
-        <div className='image-container' style={background(art)}>
-          <div className='image-container__cost'>{cost}</div>
+        <div
+          className='image-container'
+          style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
+        >
+          <div className='image-container__cost'>
+            {/* Cost handler */}
+            {decorateCost(front && cost.length ? cost[0] : cost[1])}
+          </div>
           <div className='image-container__options'>
             <div className='image-container__option' onClick={handleSwitchFace}>
               FACESWAP
@@ -144,11 +156,7 @@ const Card = ({ identity }) => {
             </div>
           </div>
           <div className='image-container__name card-name'>
-            {
-              name[
-                front ? 0 : 1
-              ] /*//~ This needs to be able to be switched between 0 and 1 */
-            }
+            {name[front ? 0 : 1]}
           </div>
         </div>
       ) : (
