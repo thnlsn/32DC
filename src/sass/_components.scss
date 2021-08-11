@@ -70,10 +70,18 @@
   gap: 0.5rem;
 
   &__cost {
-    background-color: orangered;
+    display: flex;
+    gap: 0.5rem;
+    background-color: rgba($black, 0.55);
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
     align-self: flex-end;
     margin: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem;
+    padding: 0.65rem;
+  }
+  &__symbol {
+    height: 2rem;
+    width: 2rem;
   }
 
   &__options {

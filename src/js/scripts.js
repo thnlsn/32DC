@@ -52,7 +52,7 @@ const decorateCost = (costString) => {
   // const strippedCost = costString.replace(/[{}]/g, ''); // Remove '{' and '}'
   const costArray = costString.slice(1, -1).split('}{');
   const cost = costArray.map((symbol) => {
-    return <img src={symbols[symbol]} />;
+    return <img className='image-container__symbol' src={symbols[symbol]} />;
   });
   return cost;
 };

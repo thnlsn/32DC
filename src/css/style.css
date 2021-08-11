@@ -116,10 +116,17 @@ body {
   flex-direction: column;
   gap: 0.5rem; }
   .image-container__cost {
-    background-color: orangered;
+    display: flex;
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 20px;
+    backdrop-filter: blur(2px);
     align-self: flex-end;
     margin: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem; }
+    padding: 0.65rem; }
+  .image-container__symbol {
+    height: 2rem;
+    width: 2rem; }
   .image-container__options {
     display: flex;
     flex-direction: column;
