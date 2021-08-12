@@ -3,14 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 
 //* Scripts
 import { searchCommanders, getCommander } from '../js/api';
-import { decorateBorder, decorateCost } from '../js/scripts';
-
-const decorateBackground = (url) => ({
-  backgroundImage: `url(${url})`,
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-});
+import {
+  decorateBorder,
+  decorateBackground,
+  decorateCost,
+} from '../js/scripts';
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
 // In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
@@ -43,7 +40,7 @@ const Card = ({ identity }) => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Handle key downs in autocomplete suggesstions  //////////////////////////////////////////////////////
   const handleOnKeyDown = ({ key }) => {
-    if (key === 'Enter') {
+    if (key === 'Enter' && suggestions.length > 0) {
       if (Number.isInteger(selection)) {
         setName(suggestions[selection].split('//'));
       } else {
@@ -51,7 +48,7 @@ const Card = ({ identity }) => {
         setName(suggestions[0].split('//'));
       }
     }
-    if (key === 'ArrowUp') {
+    if (key === 'ArrowUp' && suggestions.length > 0) {
       if (
         Number.isInteger(selection) &&
         selection < suggestions.length &&
@@ -62,7 +59,7 @@ const Card = ({ identity }) => {
         setSelection(0);
       }
     }
-    if (key === 'ArrowDown') {
+    if (key === 'ArrowDown' && suggestions.length > 0) {
       if (
         Number.isInteger(selection) &&
         selection >= 0 &&
@@ -91,6 +88,7 @@ const Card = ({ identity }) => {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Handle delete selection  ////////////////////////////////////////////////////////////////////////////
   const handleDelete = () => {
+    // Set all state back to initial state
     setFlipped(false);
     setName([]);
     setCost([]);

@@ -1,18 +1,19 @@
 import React from 'react';
 import symbols from '../images/Icons';
 
+const colors = {
+  W: '#e9e3b1',
+  U: '#8ebbd1',
+  B: '#9b8e8a',
+  R: '#de8166',
+  G: '#80b092',
+};
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Controls the border color based on cards color identity  ////////////////////////////////////////////
 //^ identity => ['W', 'U', 'B', 'R', 'G']   -   ['G']   -   []
 const decorateBorder = (identity) => {
-  const colors = {
-    W: '#e9e3b1',
-    U: '#8ebbd1',
-    B: '#9b8e8a',
-    R: '#de8166',
-    G: '#80b092',
-  };
   switch (identity.length) {
     case 1:
       return colors[identity[0]]; // colors property names are the same as the values expected from the identity array //? Ex: colors['W'] = '#e9e3b1'
@@ -47,6 +48,16 @@ const decorateBorder = (identity) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Return styles for card background image /////////////////////////////////////////////////////////////
+const decorateBackground = (url) => ({
+  backgroundImage: `url(${url})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Sorts the *arr response from api by matching input *string //////////////////////////////////////////
 //^ costString => "{W}{U}{B}{R}{G}{2}"   -   "{G}{G}{X}"   -   "{2}{B/P}{B/P}{B/P}"   -   "{4}{U}{S}"
 const decorateCost = (costString) => {
@@ -54,9 +65,14 @@ const decorateCost = (costString) => {
   //^ "{2}{B/P}{B/P}{B/P}" ---> "2}{B/P}{B/P}{B/P" ---> "2}{BP}{BP}{BP" ---> ["2","BP","BP","BP"]
   const costArray = costString.slice(1, -1).replaceAll('/', '').split('}{');
   // For each symbol string in the array, map to the correct symbol dynamically using bracket notation to get the img src for the local file
-  const cost = costArray.map((symbol) => {
-    return <img className='image-container__symbol' src={symbols[symbol]} />;
-  });
+  const cost =
+    costString === '' ? (
+      <div className='image-container__symbol' />
+    ) : (
+      costArray.map((symbol) => (
+        <img className='image-container__symbol' src={symbols[symbol]} />
+      ))
+    );
   return cost;
 };
 
@@ -98,4 +114,4 @@ const _sortInputFirst = (input, data) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // x ///////////////////////////////////////////////////////////////////////////////
 
-export { decorateBorder, decorateCost, sortAutoComplete };
+export { decorateBorder, decorateBackground, decorateCost, sortAutoComplete };
