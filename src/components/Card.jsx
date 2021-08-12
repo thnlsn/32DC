@@ -7,6 +7,7 @@ import {
   decorateBorder,
   decorateBackground,
   decorateCost,
+  decorateIndicators,
 } from '../js/scripts';
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
@@ -131,6 +132,8 @@ const Card = ({ identity }) => {
 
   //~ Add useEffect to fetch for DB when there is one, and set name field of card
 
+  console.log(identity);
+
   return (
     <div className='card' style={{ background: `${decorateBorder(identity)}` }}>
       {flipped ? (
@@ -141,10 +144,16 @@ const Card = ({ identity }) => {
           className='image-container'
           style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
         >
-          <div className='image-container__cost'>
+          <div className='symbols-container'>
             {/* Cost handler */}
             {decorateCost(front && cost.length ? cost[0] : cost[1])}
           </div>
+          {identity !== 'C' && (
+            <div className='symbols-container symbols-container--small symbols-container--vertical'>
+              {/* Identity colors handler */}
+              {decorateIndicators(identity)}
+            </div>
+          )}
           <div className='image-container__options'>
             <div className='image-container__option' onClick={handleSwitchFace}>
               FACESWAP

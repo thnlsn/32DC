@@ -9,6 +9,14 @@ const colors = {
   G: '#80b092',
 };
 
+const indicators = {
+  W: '#F5F1EE',
+  U: '#006BA8',
+  B: '#393431',
+  R: '#E63F27',
+  G: '#006C45',
+};
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Controls the border color based on cards color identity  ////////////////////////////////////////////
@@ -58,7 +66,7 @@ const decorateBackground = (url) => ({
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Sorts the *arr response from api by matching input *string //////////////////////////////////////////
+// Taking in the cost string to generate the cost in svgs //////////////////////////////////////////////
 //^ costString => "{W}{U}{B}{R}{G}{2}"   -   "{G}{G}{X}"   -   "{2}{B/P}{B/P}{B/P}"   -   "{4}{U}{S}"
 const decorateCost = (costString) => {
   // Removes the first and last open/closing curly brackets {}, removes all forward slashes /, and splits the rest of the cost symbols into an array by the }{ as a delimiter
@@ -67,13 +75,31 @@ const decorateCost = (costString) => {
   // For each symbol string in the array, map to the correct symbol dynamically using bracket notation to get the img src for the local file
   const cost =
     costString === '' ? (
-      <div className='image-container__symbol' />
+      <div className='symbols-container__mana' />
     ) : (
       costArray.map((symbol) => (
-        <img className='image-container__symbol' src={symbols[symbol]} />
+        <img className='symbols-container__mana' src={symbols[symbol]} />
       ))
     );
   return cost;
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Takes in identity to generate identity indicator list ///////////////////////////////////////////////
+//^ identity => ['W', 'U', 'B', 'R', 'G']   -   ['G']   -   []
+const decorateIndicators = (identity) => {
+  return identity.split('').map((color) => {
+    console.log(indicators[color]);
+    return (
+      <div
+        className='symbols-container__indicator'
+        style={{
+          background: indicators[color],
+        }}
+      />
+    );
+  });
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,6 +138,12 @@ const _sortInputFirst = (input, data) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-// x ///////////////////////////////////////////////////////////////////////////////
+// x ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-export { decorateBorder, decorateBackground, decorateCost, sortAutoComplete };
+export {
+  decorateBorder,
+  decorateBackground,
+  decorateCost,
+  decorateIndicators,
+  sortAutoComplete,
+};

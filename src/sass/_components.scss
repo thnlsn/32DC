@@ -69,21 +69,6 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  &__cost {
-    display: flex;
-    gap: 0.5rem;
-    background-color: rgba($black, 0.3);
-    border-radius: 20px;
-    backdrop-filter: blur(2px);
-    align-self: flex-end;
-    margin: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem;
-  }
-  &__symbol {
-    height: 2rem;
-    width: 2rem;
-  }
-
   &__options {
     display: flex;
     flex-direction: column;
@@ -114,5 +99,36 @@
     );
 
     color: $white;
+  }
+}
+
+.symbols-container {
+  display: flex;
+  gap: 0.5rem;
+  background-color: rgba($black, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  align-self: flex-end;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.5rem;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--small {
+    padding: 0.25rem;
+  }
+
+  &__mana {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &__indicator {
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 2px solid $black;
+    border-radius: 50%;
   }
 }

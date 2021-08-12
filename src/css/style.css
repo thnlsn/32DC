@@ -115,18 +115,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem; }
-  .image-container__cost {
-    display: flex;
-    gap: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    backdrop-filter: blur(2px);
-    align-self: flex-end;
-    margin: 0.5rem 0.5rem 0 0;
-    padding: 0.5rem; }
-  .image-container__symbol {
-    height: 2rem;
-    width: 2rem; }
   .image-container__options {
     display: flex;
     flex-direction: column;
@@ -146,3 +134,25 @@ body {
     background: #000;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.952819) 85%);
     color: #fff; }
+
+.symbols-container {
+  display: flex;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  align-self: flex-end;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.5rem; }
+  .symbols-container--vertical {
+    flex-direction: column; }
+  .symbols-container--small {
+    padding: 0.25rem; }
+  .symbols-container__mana {
+    height: 2rem;
+    width: 2rem; }
+  .symbols-container__indicator {
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 2px solid #000;
+    border-radius: 50%; }
