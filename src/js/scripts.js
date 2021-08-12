@@ -48,9 +48,12 @@ const decorateBorder = (identity) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Sorts the *arr response from api by matching input *string //////////////////////////////////////////
+//^ costString => "{W}{U}{B}{R}{G}{2}"   -   "{G}{G}{X}"   -   "{2}{B/P}{B/P}{B/P}"   -   "{4}{U}{S}"
 const decorateCost = (costString) => {
-  // const strippedCost = costString.replace(/[{}]/g, ''); // Remove '{' and '}'
-  const costArray = costString.slice(1, -1).split('}{');
+  // Removes the first and last open/closing curly brackets {}, removes all forward slashes /, and splits the rest of the cost symbols into an array by the }{ as a delimiter
+  //^ "{2}{B/P}{B/P}{B/P}" ---> "2}{B/P}{B/P}{B/P" ---> "2}{BP}{BP}{BP" ---> ["2","BP","BP","BP"]
+  const costArray = costString.slice(1, -1).replaceAll('/', '').split('}{');
+  // For each symbol string in the array, map to the correct symbol dynamically using bracket notation to get the img src for the local file
   const cost = costArray.map((symbol) => {
     return <img className='image-container__symbol' src={symbols[symbol]} />;
   });
