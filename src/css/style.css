@@ -112,9 +112,10 @@ body {
       color: rgba(255, 255, 255, 0.65); }
 
 .image-container {
-  display: flex;
+  /*   display: flex;
   flex-direction: column;
-  gap: 0.5rem; }
+  gap: 0.5rem; */
+  display: grid; }
   .image-container__options {
     display: flex;
     flex-direction: column;
