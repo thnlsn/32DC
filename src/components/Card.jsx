@@ -144,6 +144,7 @@ const Card = ({ identity }) => {
           className='image-container'
           style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
         >
+          <div className='image-container__delete'>DEL</div>
           <div className='symbols-container'>
             {/* Cost handler */}
             {decorateCost(front && cost.length ? cost[0] : cost[1])}

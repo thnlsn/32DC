@@ -115,7 +115,9 @@ body {
   /*   display: flex;
   flex-direction: column;
   gap: 0.5rem; */
-  display: grid; }
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: 1fr 1fr min-content; }
   .image-container__options {
     display: flex;
     flex-direction: column;
@@ -126,6 +128,7 @@ body {
     color: rgba(255, 255, 255, 0.65);
     font-size: 2rem; }
   .image-container__name {
+    grid-row: 3;
     margin-top: auto;
     text-align: center;
     height: 4rem;
