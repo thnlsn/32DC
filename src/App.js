@@ -52,3 +52,5 @@ function App() {
 }
 
 export default App;
+
+// If there is 2 sides, show faceswap button

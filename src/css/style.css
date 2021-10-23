@@ -116,19 +116,23 @@ body {
   flex-direction: column;
   gap: 0.5rem; */
   display: grid;
-  grid-template-columns: 1fr min-content;
-  grid-template-rows: 1fr 1fr min-content; }
+  gap: 0.5rem;
+  grid-template-areas: 'D M M M M' 'I . . . B' 'I . . . B' 'I . . . B' 'N N N N N'; }
   .image-container__options {
+    grid-area: B;
+    align-self: start;
+    justify-self: end;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 0.5rem;
-    margin: 0 0.5rem;
+    margin: 0 0.5rem 0 0;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.65);
     font-size: 2rem; }
   .image-container__name {
-    grid-row: 3;
+    grid-area: N;
     margin-top: auto;
     text-align: center;
     height: 4rem;
@@ -138,18 +142,26 @@ body {
     background: #000;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.952819) 85%);
     color: #fff; }
+  .image-container__delete {
+    grid-area: D; }
 
 .symbols-container {
+  grid-area: M;
+  align-self: start;
+  justify-self: end;
   display: flex;
   gap: 0.5rem;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   backdrop-filter: blur(2px);
-  align-self: flex-end;
   margin: 0.5rem 0.5rem 0 0;
   padding: 0.5rem; }
   .symbols-container--vertical {
-    flex-direction: column; }
+    grid-area: I;
+    align-self: start;
+    justify-self: start;
+    flex-direction: column;
+    margin: 0 0 0 0.5rem; }
   .symbols-container--small {
     padding: 0.25rem; }
   .symbols-container__mana {

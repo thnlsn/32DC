@@ -69,16 +69,27 @@
   flex-direction: column;
   gap: 0.5rem; */
   display: grid;
-  grid-template-columns: 1fr min-content;
-  grid-template-rows: 1fr 1fr min-content;
+  //grid-template-columns: 1fr min-content;
+  //grid-template-rows: 1fr 1fr min-content;
   gap: 0.5rem;
+  grid-template-areas:
+    'D M M M M'
+    'I . . . B'
+    'I . . . B'
+    'I . . . B'
+    'N N N N N';
 
+  // Faceswap, delete, etc.
   &__options {
+    grid-area: B;
+    align-self: start;
+    justify-self: end;
+    width: fit-content;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 0.5rem;
-    margin: 0 0.5rem;
+    margin: 0 0.5rem 0 0;
     cursor: pointer;
 
     color: rgba($white, 0.65);
@@ -86,7 +97,7 @@
   }
 
   &__name {
-    grid-row: 3;
+    grid-area: N;
     margin-top: auto;
     text-align: center;
 
@@ -105,20 +116,32 @@
 
     color: $white;
   }
+
+  &__delete {
+    grid-area: D;
+  }
 }
 
 .symbols-container {
+  grid-area: M;
+  align-self: start;
+  justify-self: end;
+
   display: flex;
   gap: 0.5rem;
   background-color: rgba($black, 0.3);
   border-radius: 20px;
   backdrop-filter: blur(2px);
-  align-self: flex-end;
   margin: 0.5rem 0.5rem 0 0;
   padding: 0.5rem;
 
   &--vertical {
+    grid-area: I;
+    align-self: start;
+    justify-self: start;
+
     flex-direction: column;
+    margin: 0 0 0 0.5rem;
   }
 
   &--small {
