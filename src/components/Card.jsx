@@ -17,6 +17,7 @@ import {
 //~ Don't allow search when "No Results..." - and don't let there be hover effect on it either.
 //~ Make it so autocompletes scroll down when you press down and it is in the overflowed portion.
 //~ IDEA: Make any possible second art under the main art so that there can be a fade in/out between the 2 rather than instant transition
+//~ Lord Windgrace fails...
 const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
   const [suggestions, setSuggestions] = useState([]); //
@@ -106,7 +107,8 @@ const Card = ({ identity }) => {
     } else {
       // Do things after first render
       const fetchCommander = async () => {
-        const commander = await getCommander(name);
+        console.log(name);
+        const commander = await getCommander(name, identity);
         console.log(commander);
         if (commander) {
           const { cost, art } = commander;

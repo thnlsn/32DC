@@ -34,9 +34,7 @@ const searchCommanders = async (input, id, isValidCommander = true) => {
 // GET SPECIFIC COMMANDER //////////////////////////////////////////////////////////////////////////////
 const getCommander = async (input, id) => {
   // Not limiting to commanders because user may have requested to allow non-legendaries + banned cards
-  const endpoint = `${searchQuery}${encodeURIComponent(
-    input
-  )}%2C+id%3D${id}+type%3Acreature`;
+  const endpoint = `${searchQuery}${encodeURIComponent(input)}%2C+id%3D${id}`; // +type%3Acreature
 
   try {
     const response = await axios.get(endpoint);
@@ -49,7 +47,7 @@ const getCommander = async (input, id) => {
 
     identity = card.color_identity;
 
-    console.log(response); //!Remove
+    console.log(response); //!!!!!! !!!!!! Remove
     // If there are card faces, then it is either a flip or double-faced card
     if (card.card_faces) {
       name = card.card_faces.map(({ name }) => name);
