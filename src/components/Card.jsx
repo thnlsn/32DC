@@ -9,6 +9,7 @@ import {
   decorateCost,
   decorateIndicators,
 } from '../js/scripts';
+import deleteButton from '../images/buttons/delete.png';
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
 // In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
@@ -17,7 +18,6 @@ import {
 //~ Don't allow search when "No Results..." - and don't let there be hover effect on it either.
 //~ Make it so autocompletes scroll down when you press down and it is in the overflowed portion.
 //~ IDEA: Make any possible second art under the main art so that there can be a fade in/out between the 2 rather than instant transition
-//~ Lord Windgrace fails...
 const Card = ({ identity }) => {
   const [flipped, setFlipped] = useState(false); // Flip this if option is clicked and successful response
   const [suggestions, setSuggestions] = useState([]); //
@@ -146,7 +146,13 @@ const Card = ({ identity }) => {
           className='image-container'
           style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
         >
-          <div className='image-container__delete'>DEL</div>
+          {
+            <img
+              className='image-container__delete'
+              onClick={handleDelete}
+              src={deleteButton}
+            />
+          }
           <div className='symbols-container'>
             {/* Cost handler */}
             {decorateCost(front && cost.length ? cost[0] : cost[1])}
@@ -160,9 +166,6 @@ const Card = ({ identity }) => {
           <div className='image-container__options'>
             <div className='image-container__option' onClick={handleSwitchFace}>
               FACESWAP
-            </div>
-            <div className='image-container__option' onClick={handleDelete}>
-              DELETE
             </div>
           </div>
           <div className='image-container__name card-name'>
