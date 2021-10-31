@@ -9,7 +9,7 @@ import {
   decorateCost,
   decorateIndicators,
 } from '../js/scripts';
-import deleteButton from '../images/buttons/delete.png';
+import Delete from './Icons/Delete';
 
 // In the case of modal double-faced cards, name, cost and art will be arrays with the main side data first //~ HANDLE THIS CASE!
 // In the case of single-faced flip cards, name and art will be arrays with main side data first //~ HANDLE THIS CASE!
@@ -146,13 +146,8 @@ const Card = ({ identity }) => {
           className='image-container'
           style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
         >
-          {
-            <img
-              className='image-container__delete'
-              onClick={handleDelete}
-              src={deleteButton}
-            />
-          }
+          <Delete handleDelete={handleDelete} />
+
           <div className='symbols-container'>
             {/* Cost handler */}
             {decorateCost(front && cost.length ? cost[0] : cost[1])}
