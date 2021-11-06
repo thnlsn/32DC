@@ -122,18 +122,17 @@ const Card = ({ identity }) => {
       };
       fetchCommander();
     }
-  }, [name]);
+  }, [name]); // When name changes, grab all the neccesary data
 
   useEffect(() => {
-    console.log(name, art, cost);
+    console.log(name, art, cost); //! Remove
     if (name.length > 0 && cost.length > 0 && art.length > 0) {
-      console.log('flipped');
+      console.log('flipped'); //! Remove
       setFlipped(true);
     }
   }, [name, art, cost]);
 
   //~ Add useEffect to fetch for DB when there is one, and set name field of card
-
   console.log(identity);
 
   return (
@@ -146,23 +145,27 @@ const Card = ({ identity }) => {
           className='image-container'
           style={decorateBackground(front && art.length > 0 ? art[0] : art[1])}
         >
+          {/* DELETE BUTTON ///////////////////////////////////////////////////////////////////////////////// */}
           <Delete handleDelete={handleDelete} />
-
+          {/* MANA COST ///////////////////////////////////////////////////////////////////////////////////// */}
           <div className='symbols-container'>
             {/* Cost handler */}
             {decorateCost(front && cost.length ? cost[0] : cost[1])}
           </div>
+          {/* IDENTITY INDICATORS /////////////////////////////////////////////////////////////////////////// */}
           {identity !== 'C' && (
             <div className='symbols-container symbols-container--small symbols-container--vertical'>
               {/* Identity colors handler */}
               {decorateIndicators(identity)}
             </div>
           )}
+          {/* OPTIONS /////////////////////////////////////////////////////////////////////////////////////// */}
           <div className='image-container__options'>
             <div className='image-container__option' onClick={handleSwitchFace}>
               FACESWAP
             </div>
           </div>
+          {/* CARD NAME ///////////////////////////////////////////////////////////////////////////////////// */}
           <div className='image-container__name card-name'>
             {name[front ? 0 : 1]}
           </div>
