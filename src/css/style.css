@@ -112,6 +112,7 @@ body {
       color: rgba(255, 255, 255, 0.65); }
 
 .image-container {
+  position: relative;
   /*   display: flex;
   flex-direction: column;
   gap: 0.5rem; */
@@ -144,11 +145,11 @@ body {
     color: #fff; }
   .image-container__delete {
     grid-area: D;
-    height: 2rem;
+    height: 2.5rem;
     width: auto;
     cursor: pointer;
     margin: 0.5rem 0 0 0.5rem;
-    fill: white;
+    fill: #fff;
     transition: opacity 0.1s;
     opacity: 0.5; }
     .image-container__delete:hover {
@@ -170,14 +171,18 @@ body {
     align-self: start;
     justify-self: start;
     flex-direction: column;
-    margin: 0 0 0 0.5rem; }
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    transform: translate(-62.5%, 0);
+    position: absolute;
+    left: 0; }
   .symbols-container--small {
-    padding: 0.25rem; }
+    padding: 0.1rem; }
   .symbols-container__mana {
     height: 2rem;
     width: 2rem; }
   .symbols-container__indicator {
     height: 1.5rem;
     width: 1.5rem;
-    border: 2px solid #000;
+    border: 2px solid rgba(0, 0, 0, 0.5);
     border-radius: 50%; }
