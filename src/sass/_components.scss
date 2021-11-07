@@ -78,9 +78,8 @@
   grid-template-areas:
     'D M M M M'
     'I . . . B'
-    'I . . . B'
-    'I . . . B'
     'N N N N N';
+  grid-template-rows: min-content 1fr min-content;
 
   // Faceswap, delete, etc.
   &__options {
@@ -158,13 +157,17 @@
 
     flex-direction: column;
     // margin: 0 0 0 0.5rem; //* For inside the card
+    margin: 0;
 
     background-color: rgba($white, 0.2);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2.5px);
 
     transform: translate(-62.5%, 0);
     position: absolute;
+    // border-top-right-radius: 5px;
     left: 0;
+    // top: -4.35rem;
+    top: -1rem;
   }
 
   &--small {
@@ -179,7 +182,8 @@
   &__indicator {
     height: 1.5rem;
     width: 1.5rem;
-    border: 2px solid rgba($black, 0.5);
+    border: 2px solid rgba($black, 0.75);
     border-radius: 50%;
+    opacity: 0.75;
   }
 }

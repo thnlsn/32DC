@@ -118,7 +118,8 @@ body {
   gap: 0.5rem; */
   display: grid;
   gap: 0.5rem;
-  grid-template-areas: 'D M M M M' 'I . . . B' 'I . . . B' 'I . . . B' 'N N N N N'; }
+  grid-template-areas: 'D M M M M' 'I . . . B' 'N N N N N';
+  grid-template-rows: min-content 1fr min-content; }
   .image-container__options {
     grid-area: B;
     align-self: start;
@@ -171,11 +172,13 @@ body {
     align-self: start;
     justify-self: start;
     flex-direction: column;
+    margin: 0;
     background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2.5px);
     transform: translate(-62.5%, 0);
     position: absolute;
-    left: 0; }
+    left: 0;
+    top: -1rem; }
   .symbols-container--small {
     padding: 0.1rem; }
   .symbols-container__mana {
@@ -184,5 +187,6 @@ body {
   .symbols-container__indicator {
     height: 1.5rem;
     width: 1.5rem;
-    border: 2px solid rgba(0, 0, 0, 0.5);
-    border-radius: 50%; }
+    border: 2px solid rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    opacity: 0.75; }
