@@ -162,7 +162,7 @@ body {
   justify-self: end;
   display: flex;
   gap: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   backdrop-filter: blur(2px);
   margin: 0.5rem 0.5rem 0 0;
@@ -172,15 +172,12 @@ body {
     align-self: start;
     justify-self: start;
     flex-direction: column;
-    margin: 0;
+    margin: 0 0 0 0.5rem;
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(2.5px);
-    transform: translate(-62.5%, 0);
-    position: absolute;
-    left: 0;
-    top: -1rem; }
+    transform: translate(0, -0.5rem); }
   .symbols-container--small {
-    padding: 0.1rem; }
+    padding: 0.25rem 0.2rem; }
   .symbols-container__mana {
     height: 2rem;
     width: 2rem; }
