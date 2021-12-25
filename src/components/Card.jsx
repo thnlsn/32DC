@@ -160,16 +160,16 @@ const Card = ({ identity }) => {
             </div>
           )}
           {/* OPTIONS /////////////////////////////////////////////////////////////////////////////////////// */}
-          {name.length === 2 && (
-            <div className='image-container__options'>
+          <div className='image-container__options'>
+            {name.length === 2 && (
               <div
                 className='image-container__option'
                 onClick={handleSwitchFace}
               >
                 FACESWAP
               </div>
-            </div>
-          )}
+            )}
+          </div>
           {/* CARD NAME ///////////////////////////////////////////////////////////////////////////////////// */}
           <div className='image-container__name card-name'>
             {name[front ? 0 : 1]}
